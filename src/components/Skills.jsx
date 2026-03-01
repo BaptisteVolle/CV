@@ -1,71 +1,24 @@
 import React from "react";
-
-const skills = [
-  {
-    category: "Frontend",
-    items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Vite"],
-  },
-  {
-    category: "Backend",
-    items: ["Node.js", "Express", "Python", "PostgreSQL", "MongoDB"],
-  },
-  { category: "Tools", items: ["Git", "Docker", "Figma", "Jest", "AWS"] },
-];
+import { skillsData } from "../data/skills";
 
 export default function Skills() {
   return (
     <section
-      className="section animate-fade-in"
+      className="py-20 animate-fade-in"
       style={{ animationDelay: "0.4s" }}
     >
-      <h2 style={{ marginBottom: "3rem" }}>Skills</h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "2rem",
-        }}
-      >
-        {skills.map((skillGroup, index) => (
-          <div key={index} className="glass-panel" style={{ padding: "2rem" }}>
-            <h3
-              style={{
-                color: "var(--primary)",
-                marginBottom: "1.5rem",
-                textAlign: "center",
-              }}
-            >
+      <h2 className="section-title">Skills</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {skillsData.map((skillGroup, index) => (
+          <div key={index} className="glass-panel p-8 text-center">
+            <h3 className="text-primary text-xl font-bold mb-6">
               {skillGroup.category}
             </h3>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.75rem",
-                justifyContent: "center",
-              }}
-            >
+            <div className="flex flex-wrap gap-3 justify-center">
               {skillGroup.items.map((item, idx) => (
                 <span
                   key={idx}
-                  style={{
-                    padding: "0.5rem 1rem",
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid var(--border-color)",
-                    borderRadius: "var(--radius-full)",
-                    fontSize: "0.9rem",
-                    color: "var(--text-main)",
-                    transition: "all var(--transition-fast)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "var(--primary-glow)";
-                    e.currentTarget.style.borderColor = "var(--primary)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background =
-                      "rgba(255, 255, 255, 0.05)";
-                    e.currentTarget.style.borderColor = "var(--border-color)";
-                  }}
+                  className="px-4 py-2 rounded-full border border-[var(--border-color)] text-sm text-[var(--text-main)] transition-colors duration-200 hover:bg-primary/20 hover:border-primary bg-black/5 dark:bg-white/5"
                 >
                   {item}
                 </span>

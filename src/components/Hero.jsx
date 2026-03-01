@@ -1,45 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PrintableCV from "./PrintableCV";
+import { experienceData } from "../data/experience";
+import { educationData } from "../data/education";
+import { skillsData } from "../data/skills";
 
 export default function Hero() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <section
-      className="section animate-fade-in"
-      style={{ textAlign: "center", paddingTop: "8rem" }}
-    >
-      <div
-        className="glass-panel"
-        style={{ padding: "4rem 2rem", maxWidth: "800px", margin: "0 auto" }}
-      >
-        <h1 style={{ marginBottom: "1rem" }}>Baptiste</h1>
-        <p
-          style={{
-            color: "var(--text-muted)",
-            fontSize: "1.25rem",
-            marginBottom: "2rem",
-            maxWidth: "600px",
-            margin: "0 auto 2rem",
-          }}
-        >
+    <section className="py-20 md:py-32 text-center animate-fade-in">
+      <div className="glass-panel p-8 md:p-16 max-w-3xl mx-auto">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">
+          Baptiste
+        </h1>
+        <p className="text-[var(--text-muted)] text-lg md:text-xl mb-8 max-w-2xl mx-auto">
           Passionate software developer specializing in modern web and mobile
           applications. Building elegant and high-performance digital
           experiences.
         </p>
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+
+        <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
-            href="/cv.pdf"
-            download="Baptiste_CV.pdf"
-            className="btn btn-primary"
+            href="mailto:contact@example.com"
+            className="text-secondary hover:text-primary font-medium transition-colors"
           >
-            Download CV
+            contact@example.com
           </a>
+          <span className="text-[var(--text-muted)] hidden sm:inline">•</span>
+          <a
+            href="#"
+            className="text-secondary hover:text-primary font-medium transition-colors"
+          >
+            LinkedIn
+          </a>
+          <span className="text-[var(--text-muted)] hidden sm:inline">•</span>
+          <a
+            href="#"
+            className="text-secondary hover:text-primary font-medium transition-colors"
+          >
+            GitHub
+          </a>
+        </div>
+
+        <div className="flex flex-wrap gap-4 justify-center">
+          {isClient && (
+            <PDFDownloadLink
+              document={
+                <PrintableCV
+                  experience={experienceData}
+                  education={educationData}
+                  skills={skillsData}
+                />
+              }
+              fileName="Baptiste_CV.pdf"
+              className="btn btn-primary"
+            >
+              {({ blob, url, loading, error }) =>
+                loading ? "Generating Document..." : "Download PDF"
+              }
+            </PDFDownloadLink>
+          )}
           <a
             href="#experience"
-            className="btn glass-panel"
-            style={{
-              color: "var(--text-main)",
-              border: "1px solid var(--border-color)",
-              background: "transparent",
-            }}
+            className="btn glass-panel text-[var(--text-main)] hover:bg-[var(--surface-hover)]"
           >
             View Experience
           </a>

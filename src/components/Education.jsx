@@ -1,69 +1,33 @@
 import React from "react";
-
-const educationData = [
-  {
-    degree: "Master of Science in Computer Science",
-    school: "University of Technology",
-    duration: "2017 - 2019",
-    description:
-      "Specialized in Artificial Intelligence and Software Engineering. Graduated with Honors.",
-  },
-  {
-    degree: "Bachelor of Science in Information Technology",
-    school: "State University",
-    duration: "2014 - 2017",
-    description:
-      "Minor in Mathematics. Active member of the Coding Club and Hackathon team.",
-  },
-];
+import { educationData } from "../data/education";
 
 export default function Education() {
   return (
     <section
-      className="section animate-fade-in"
+      className="py-20 animate-fade-in"
       style={{ animationDelay: "0.6s" }}
     >
-      <h2 style={{ marginBottom: "3rem" }}>Education</h2>
-      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <h2 className="section-title">Education</h2>
+      <div className="flex flex-col gap-8">
         {educationData.map((edu, index) => (
           <div
             key={index}
-            className="glass-panel"
-            style={{ padding: "2rem", borderLeft: "4px solid var(--accent)" }}
+            className="glass-panel p-8 border-l-4 border-l-accent"
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.5rem",
-                flexWrap: "wrap",
-                gap: "1rem",
-              }}
-            >
-              <h3 style={{ margin: 0, color: "var(--text-main)" }}>
+            <div className="flex flex-wrap justify-between items-center mb-2 gap-4">
+              <h3 className="text-xl font-bold text-[var(--text-main)] m-0">
                 {edu.degree}
               </h3>
-              <span
-                style={{
-                  color: "var(--accent)",
-                  fontSize: "0.9rem",
-                  fontWeight: 600,
-                }}
-              >
+              <span className="text-accent text-sm font-semibold">
                 {edu.duration}
               </span>
             </div>
-            <h4
-              style={{
-                margin: 0,
-                marginBottom: "1rem",
-                color: "var(--text-muted)",
-              }}
-            >
+            <h4 className="text-lg font-semibold text-[var(--text-muted)] mb-4 m-0">
               {edu.school}
             </h4>
-            <p style={{ color: "var(--text-muted)" }}>{edu.description}</p>
+            <p className="text-[var(--text-muted)] leading-relaxed">
+              {edu.description}
+            </p>
           </div>
         ))}
       </div>
