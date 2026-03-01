@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Hero from "./components/Hero";
+import Experience from "./components/Experience";
+import Skills from "./components/Skills";
+import Education from "./components/Education";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className="container">
+      <Hero />
+      <Experience />
+      <Skills />
+      <Education />
+
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "3rem 0",
+          color: "var(--text-muted)",
+          borderTop: "1px solid var(--border-color)",
+          marginTop: "2rem",
+        }}
+      >
+        <p>© {new Date().getFullYear()} Baptiste. All rights reserved.</p>
+        <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>
+          Built with React, Vite & Vanilla CSS
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
