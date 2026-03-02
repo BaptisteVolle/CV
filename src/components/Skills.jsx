@@ -1,15 +1,17 @@
 import React from "react";
-import { skillsData } from "../data/skills";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section
-      className="py-20 animate-fade-in"
+      className="py-12 animate-fade-in"
       style={{ animationDelay: "0.4s" }}
     >
-      <h2 className="section-title">Skills</h2>
+      <h2 className="section-title">{t.sections.skills}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skillsData.map((skillGroup, index) => (
+        {t.skills.map((skillGroup, index) => (
           <div key={index} className="glass-panel p-8 text-center">
             <h3 className="text-primary text-xl font-bold mb-6">
               {skillGroup.category}

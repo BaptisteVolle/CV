@@ -1,15 +1,17 @@
 import React from "react";
-import { educationData } from "../data/education";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Education() {
+  const { t } = useLanguage();
+
   return (
     <section
-      className="py-20 animate-fade-in"
+      className="py-12 animate-fade-in"
       style={{ animationDelay: "0.6s" }}
     >
-      <h2 className="section-title">Education</h2>
+      <h2 className="section-title">{t.sections.education}</h2>
       <div className="flex flex-col gap-8">
-        {educationData.map((edu, index) => (
+        {t.education.map((edu, index) => (
           <div
             key={index}
             className="glass-panel p-8 border-l-4 border-l-accent"

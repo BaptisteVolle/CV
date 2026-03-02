@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PrintableCV from "./PrintableCV";
-import { experienceData } from "../data/experience";
-import { educationData } from "../data/education";
-import { skillsData } from "../data/skills";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Hero() {
   const [isClient, setIsClient] = useState(false);
+  const { t } = useLanguage();
+  const EMAIL_ADDRESS = "baptistevolle09@gmail.com";
 
   useEffect(() => {
     setIsClient(true);
@@ -18,29 +18,27 @@ export default function Hero() {
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">
           Baptiste
         </h1>
-        <p className="text-[var(--text-muted)] text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-          Passionate software developer specializing in modern web and mobile
-          applications. Building elegant and high-performance digital
-          experiences.
+        <p className="text-[var(--text-main)] text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+          {t.hero.tagline}
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center mb-8">
           <a
-            href="mailto:contact@example.com"
+            href={`mailto:${EMAIL_ADDRESS}`}
             className="text-secondary hover:text-primary font-medium transition-colors"
           >
-            contact@example.com
+            {EMAIL_ADDRESS}
           </a>
           <span className="text-[var(--text-muted)] hidden sm:inline">•</span>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/baptiste-volle-011085155/"
             className="text-secondary hover:text-primary font-medium transition-colors"
           >
             LinkedIn
           </a>
           <span className="text-[var(--text-muted)] hidden sm:inline">•</span>
           <a
-            href="#"
+            href="https://github.com/BaptisteVolle"
             className="text-secondary hover:text-primary font-medium transition-colors"
           >
             GitHub
@@ -52,16 +50,20 @@ export default function Hero() {
             <PDFDownloadLink
               document={
                 <PrintableCV
-                  experience={experienceData}
-                  education={educationData}
-                  skills={skillsData}
+                  experience={t.experience}
+                  education={t.education}
+                  skills={t.skills}
+                  languages={t.languages}
+                  contact={t.contact}
+                  labels={t.pdfLabels}
+                  tagline={t.hero.tagline}
                 />
               }
-              fileName="Baptiste_CV.pdf"
+              fileName={t.hero.pdfFilename}
               className="btn btn-primary"
             >
               {({ blob, url, loading, error }) =>
-                loading ? "Generating Document..." : "Download PDF"
+                loading ? t.hero.generatingPdf : t.hero.downloadPdf
               }
             </PDFDownloadLink>
           )}
@@ -69,7 +71,7 @@ export default function Hero() {
             href="#experience"
             className="btn glass-panel text-[var(--text-main)] hover:bg-[var(--surface-hover)]"
           >
-            View Experience
+            {t.hero.viewExperience}
           </a>
         </div>
       </div>
