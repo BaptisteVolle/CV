@@ -32,11 +32,11 @@ export const translations = {
 
     // Contact info
     contact: {
-      phone: "+438-795-3987",
-      email: "baptistevolle09@gmail.com",
+      phone: "07 87 14 14 56",
+      email: "[EMAIL_ADDRESS]",
       linkedin: "linkedin.com/in/baptiste-volle-011085155",
       github: "github.com/BaptisteVolle",
-      location: "Montréal, Canada / Montpellier, France",
+      location: "Montpellier, France",
     },
 
     // Languages
@@ -153,11 +153,11 @@ export const translations = {
 
     // Contact info
     contact: {
-      phone: "+438-795-3987",
+      phone: "07 87 14 14 56",
       email: "baptistevolle09@gmail.com",
       linkedin: "linkedin.com/in/baptiste-volle-011085155",
       github: "github.com/BaptisteVolle",
-      location: "Montréal, Canada / Montpellier, France",
+      location: "Montpellier, France",
     },
 
     // Languages
@@ -186,7 +186,6 @@ export const translations = {
         description:
           "Développement de OCN, une plateforme centralisée de gestion de réseaux de bâtiments intelligents visant à simplifier le pilotage d'équipements CVC (HVAC) et de protocoles industriels complexes.",
         details: [
-          "Développeur Principal (Lead) de la plateforme OCN : Pilotage technique de l'interface et garant de la cohérence du projet.",
           "Design UI/UX & Conception : Responsable de la majorité des interfaces et du parcours utilisateur, avec une grande liberté de création et des retours très positifs de l'équipe.",
           "Techniques avancées & Performance : Visualisation de plus d'un million de points en temps réel via SciChart et GridStack pour des dashboards industriels haute performance.",
           "Expertise Bacnet : Intégration et configuration de réseaux complexes (IP & MSTP), incluant la découverte d'appareils et la mise à jour de Firmware.",
@@ -217,7 +216,7 @@ export const translations = {
         school: "Université de Montpellier",
         duration: "2017 - 2019",
         description:
-          "Master d'Architecture et Ingénierie et des Logiciels et du Web à l'Université de Montpellier (AIGLE)",
+          "Master en Architecture et Ingénierie des Logiciels et du Web à l'Université de Montpellier (AIGLE)",
       },
       {
         degree: "Licence en Informatique",
