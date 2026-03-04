@@ -6,79 +6,104 @@ import {
   View,
   StyleSheet,
   Font,
+  Svg,
+  Path,
 } from "@react-pdf/renderer";
 
+
+import RobotoRegular from "../assets/fonts/RobotoRegular-3m4L.ttf";
+import RobotoBold from "../assets/fonts/RobotoBold-Xdoj.ttf";
+import RobotoItalic from "../assets/fonts/RobotoItalic-W0gE.ttf";
+import RobotoBoldItalic from "../assets/fonts/RobotoBoldItalic-4e0x.ttf";
+
+Font.register({
+  family: "Roboto",
+  fonts: [
+    { src: RobotoRegular },
+    { src: RobotoBold, fontWeight: "bold" },
+    { src: RobotoItalic, fontStyle: "italic" },
+    { src: RobotoBoldItalic, fontWeight: "bold", fontStyle: "italic" },
+  ]
+});
+
 // Create standard printable styles
+
+
+
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+    fontFamily: "Roboto",
     backgroundColor: "#FFFFFF",
-    fontFamily: "Helvetica",
-    padding: 0,
-  },
-  sidebar: {
-    width: "28%",
-    backgroundColor: "#111827", // Darker Navy
-    color: "#FFFFFF",
-    padding: 25,
-    height: "100%",
   },
   main: {
-    width: "72%",
-    padding: 35,
+    width: "100%",
   },
-  sidebarSection: {
-    marginBottom: 25,
-  },
-  sidebarTitle: {
-    fontSize: 11,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    marginBottom: 12,
+  header: {
+    marginBottom: 15,
+    textAlign: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#374151",
-    paddingBottom: 4,
-    letterSpacing: 1,
-  },
-  sidebarItem: {
-    fontSize: 8.5,
-    marginBottom: 6,
-    color: "#d1d5db",
-    lineHeight: 1.3,
+    paddingBottom: 10,
   },
   name: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#111827",
-    marginBottom: 4,
-    letterSpacing: 0.5,
+    color: "#000000",
+    textTransform: "uppercase",
   },
   subtitle: {
     fontSize: 13,
-    color: "#4b5563",
-    marginBottom: 15,
-    fontWeight: "medium",
+    color: "#374151",
+    marginTop: 2,
+    fontWeight: "bold",
   },
-  tagline: {
+  contactRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 5,
+    gap: 10,
+  },
+  contactItem: {
+    fontSize: 9,
+    color: "#374151",
+  },
+  contact: {
     fontSize: 9.5,
     color: "#4b5563",
-    fontStyle: "italic",
-    marginBottom: 25,
-    lineHeight: 1.5,
+    marginTop: 5,
+    textAlign: "center",
+  },
+  contactInfo: {
+    fontSize: 9.5,
+    color: "#4b5563",
+    fontWeight: "normal",
+  },
+  tagline: {
+    fontSize: 10,
+    color: "#000000",
+    marginTop: 10,
+    marginBottom: 10,
+    lineHeight: 1.4,
+    textAlign: "justify",
   },
   sectionTitle: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "bold",
-    textTransform: "uppercase",
-    marginBottom: 12,
-    borderBottomWidth: 1.5,
-    borderBottomColor: "#111827",
-    paddingBottom: 3,
+    backgroundColor: "#f3f4f6", 
     color: "#111827",
-    letterSpacing: 0.8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    marginHorizontal: -8,
+    marginTop: 14,
+    marginBottom: 12,
+    textTransform: "uppercase",
+    
   },
   itemGroup: {
-    marginBottom: 18,
+    marginBottom: 16,
+    flexDirection: "column", 
   },
   itemHeader: {
     flexDirection: "row",
@@ -88,20 +113,20 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 11,
     fontWeight: "bold",
-    color: "#111827",
+    color: "#000000",
   },
   itemDate: {
     fontSize: 8.5,
-    color: "#6b7280",
+    color: "#4b5563",
   },
   itemSubtitleRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 5,
+    marginBottom: 3,
   },
   itemSubtitle: {
-    fontSize: 9.5,
-    fontWeight: "semibold",
+    fontSize: 9,
+    fontWeight: "bold",
     color: "#374151",
   },
   itemLocation: {
@@ -110,36 +135,41 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   itemDescription: {
-    fontSize: 9,
-    lineHeight: 1.5,
-    color: "#374151",
+    fontSize: 10,
+    lineHeight: 1.3,
+    color: "#000000",
     marginBottom: 4,
   },
   bulletPointContainer: {
     flexDirection: "row",
-    marginBottom: 3,
+    marginBottom: 2,
+    paddingLeft: 4,
   },
   bulletMarker: {
     width: 10,
-    fontSize: 9,
-    color: "#4b5563",
+    fontSize: 8.5,
   },
   bulletText: {
     flex: 1,
     fontSize: 9,
-    lineHeight: 1.4,
-    color: "#4b5563",
+    lineHeight: 1.3,
+    color: "#000000",
   },
-  boldText: {
-    fontWeight: "bold",
-    color: "#111827",
+  
+  technologiesText: {
+    fontSize: 8,
+    color: "#374151",
+    marginTop: 5,
+    fontStyle: "italic",
+    paddingTop: 3,
+    borderTopWidth: 0.5,
+    borderTopColor: "#e5e7eb",
   },
 });
 
 const PrintableCV = ({
   experience,
   education,
-  skills,
   languages,
   contact,
   labels,
@@ -147,52 +177,16 @@ const PrintableCV = ({
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* Left Sidebar */}
-      <View style={styles.sidebar}>
-        <View style={styles.sidebarSection}>
-          <Text style={styles.sidebarTitle}>{labels.contact}</Text>
-          <Text style={styles.sidebarItem}>{contact.email}</Text>
-          <Text style={styles.sidebarItem}>{contact.phone}</Text>
-          <Text style={styles.sidebarItem}>{contact.location}</Text>
-          <Text style={styles.sidebarItem}>
-            LinkedIn: {contact.linkedin.split("/").pop()}
-          </Text>
-          <Text style={styles.sidebarItem}>
-            GitHub: {contact.github.split("/").pop()}
-          </Text>
-        </View>
-
-        <View style={styles.sidebarSection}>
-          <Text style={styles.sidebarTitle}>{labels.technicalSkills}</Text>
-          {skills.map((group, i) => (
-            <View key={i} style={{ marginBottom: 8 }}>
-              <Text
-                style={[
-                  styles.sidebarItem,
-                  { fontWeight: "bold", color: "#FFFFFF" },
-                ]}
-              >
-                {group.category}
-              </Text>
-              <Text style={styles.sidebarItem}>{group.items.join(", ")}</Text>
-            </View>
-          ))}
-        </View>
-
-        <View style={styles.sidebarSection}>
-          <Text style={styles.sidebarTitle}>{labels.languages}</Text>
-          {languages.map((lang, i) => (
-            <Text key={i} style={styles.sidebarItem}>
-              {lang.name} : {lang.level}
-            </Text>
-          ))}
-        </View>
-      </View>
-
       {/* Main Content */}
       <View style={styles.main}>
-        <Text style={styles.name}>BAPTISTE VOLLE</Text>
-        <Text style={styles.subtitle}>{labels.subtitle}</Text>
+        <View style={styles.header}>
+          <Text style={styles.name}>BAPTISTE VOLLE</Text>
+          <Text style={styles.subtitle}>{labels.subtitle}, {labels.experienceDuration}</Text>
+
+          <Text style={styles.contact}> <Text style={styles.contactInfo}> {contact.email} </Text>  •  <Text style={styles.contactInfo}>{contact.phone} </Text>  </Text>
+
+        </View>
+
         <Text style={styles.tagline}>{tagline}</Text>
 
         <View style={{ marginBottom: 20 }}>
@@ -235,6 +229,14 @@ const PrintableCV = ({
                     </View>
                   );
                 })}
+              {exp.technologies && (
+                <Text style={styles.technologiesText}>
+                  <Text style={{ fontWeight: "bold", fontStyle: "normal" }}>
+                    {labels.technicalEnvironment}{" "}
+                  </Text>
+                  {exp.technologies}
+                </Text>
+              )}
             </View>
           ))}
         </View>
@@ -242,15 +244,15 @@ const PrintableCV = ({
         <View>
           <Text style={styles.sectionTitle}>{labels.education}</Text>
           {education.map((edu, i) => (
-            <View key={i} style={styles.itemGroup}>
-              <View style={styles.itemHeader}>
-                <Text style={styles.itemTitle}>{edu.degree}</Text>
-                <Text style={styles.itemDate}>{edu.duration}</Text>
-              </View>
-              <Text style={styles.itemSubtitle}>{edu.school}</Text>
-              <Text style={styles.itemDescription}>{edu.description}</Text>
+          <View key={i} style={styles.itemGroup}>
+            <View style={styles.itemHeader}>
+              <Text style={styles.itemTitle}>{edu.degree}</Text>
+              <Text style={styles.itemDate}>{edu.duration}</Text>
             </View>
-          ))}
+            <Text style={styles.itemSubtitle}>{edu.school}</Text>
+            {edu.description ? <Text style={styles.itemDescription}>{edu.description}</Text> : null}
+          </View>
+        ))}
         </View>
       </View>
     </Page>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PrintableCV from "./PrintableCV";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -52,7 +52,6 @@ export default function Hero() {
                 <PrintableCV
                   experience={t.experience}
                   education={t.education}
-                  skills={t.skills}
                   languages={t.languages}
                   contact={t.contact}
                   labels={t.pdfLabels}
@@ -74,7 +73,28 @@ export default function Hero() {
             {t.hero.viewExperience}
           </a>
         </div>
+
+        {/* Embedded PDF Viewer for live preview */}
+        {isClient && (
+          <div className="mt-16 w-full h-[800px] rounded-xl overflow-hidden border border-[var(--border-color)] shadow-2xl">
+            <PDFViewer width="100%" height="100%" className="border-none">
+              <PrintableCV
+                experience={t.experience}
+                education={t.education}
+                languages={t.languages}
+                contact={t.contact}
+                labels={t.pdfLabels}
+                tagline={t.hero.tagline}
+              />
+            </PDFViewer>
+          </div>
+        )}
       </div>
+
+
+
+
+      
     </section>
   );
 }

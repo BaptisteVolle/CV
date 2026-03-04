@@ -37,7 +37,7 @@ export default function Experience() {
               {exp.description}
             </p>
             {exp.details && (
-              <ul className="list-disc list-outside space-y-2 text-[var(--text-muted)] ml-6">
+              <ul className="list-disc list-outside space-y-2 text-[var(--text-muted)] ml-6 mb-4">
                 {exp.details.map((detail, dIdx) => {
                   const colonIndex = detail.indexOf(":");
                   if (colonIndex !== -1) {
@@ -59,6 +59,11 @@ export default function Experience() {
                   );
                 })}
               </ul>
+            )}
+            {exp.technologies && (
+              <p className="text-[var(--text-main)] font-medium leading-relaxed mt-2 pt-4 border-t border-[var(--border-color)]">
+                {t.pdfLabels.technicalEnvironment} <span className="font-normal text-[var(--text-muted)]">{exp.technologies}</span>
+              </p>
             )}
           </div>
         ))}

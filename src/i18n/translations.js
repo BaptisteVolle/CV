@@ -34,7 +34,6 @@ export const translations = {
     contact: {
       phone: "07 87 14 14 56",
       email: "[EMAIL_ADDRESS]",
-      linkedin: "linkedin.com/in/baptiste-volle-011085155",
       github: "github.com/BaptisteVolle",
       location: "Montpellier, France",
     },
@@ -53,6 +52,7 @@ export const translations = {
       education: "Education",
       languages: "Languages",
       contact: "Contact",
+      technicalEnvironment: "Technical Environment:",
     },
 
     // Experience data
@@ -72,6 +72,7 @@ export const translations = {
           "Full-Stack Synergy & stability: Collaborated closely with backend developers to optimize API endpoints and with QA teams via Jira to maintain high platform stability.",
           "Agile Leadership: Led bi-monthly backlog grooming and demos to validate designs and steer development priorities.",
         ],
+        technologies: "Angular / C# / .NET / Typescript / HTML / CSS / TailwindCSS / SCSS / Kendo UI / Git / Jira / Figma",
       },
       {
         role: "Full Stack Developer",
@@ -86,6 +87,7 @@ export const translations = {
           "Airbus Project (Ground Tests): Fullstack development of a web tool for managing ground test reruns using .NET, Angular, and SQL Server. Authored technical specifications (BRD/ARD).",
           "Cross-functional: Mentored new team members and conducted regular client demos to validate requirements and steer development.",
         ],
+        technologies: "JavaScript / Angular / .NET / Google Apps Script / SQL / Palantir Skywise / Git / Azure DevOps",
       },
     ],
 
@@ -125,11 +127,11 @@ export const translations = {
     // Hero
     hero: {
       tagline:
-        "Développeur passionné spécialisé dans les applications web et mobiles modernes. Je crée des expériences digitales élégantes et performantes.",
-      downloadPdf: "Télécharger le PDF",
-      generatingPdf: "Génération en cours...",
-      viewExperience: "Voir l'expérience",
-      pdfFilename: "Baptiste_CV_FR.pdf",
+        "Développeur Full Stack avec 7 ans d’expérience, dont 2 ans à Montréal dans le secteur du bâtiment intelligent. Expert dans la création d'interfaces industrielles haute performance (.NET / Angular), je mets mon expertise internationale au service de projets innovants sur Montpellier et sa région.",
+      downloadPdf: "Télécharger le CV",
+      generatingPdf: "Génération du PDF...",
+      viewExperience: "Découvrir mes projets",
+      pdfFilename: "Baptiste_Volle_CV.pdf",
     },
 
     // Section titles
@@ -155,9 +157,7 @@ export const translations = {
     contact: {
       phone: "07 87 14 14 56",
       email: "baptistevolle09@gmail.com",
-      linkedin: "linkedin.com/in/baptiste-volle-011085155",
       github: "github.com/BaptisteVolle",
-      location: "Montpellier, France",
     },
 
     // Languages
@@ -168,75 +168,80 @@ export const translations = {
 
     // PDF specific labels
     pdfLabels: {
-      subtitle: "Développeur Full Stack",
-      professionalExperience: "Expérience Professionnelle",
-      technicalSkills: "Compétences Techniques",
-      education: "Formation",
+      subtitle: "Développeur Full Stack Senior",
+      experienceDuration: "7 ans d'expertise",
+      professionalExperience: "Parcours Professionnel",
+      technicalSkills: "Expertise Technique",
+      education: "Cursus Académique",
       languages: "Langues",
       contact: "Contact",
+      technicalEnvironment: "Stack technique :",
     },
 
     // Experience data
     experience: [
       {
-        role: "Développeur Frontend",
+        role: "Développeur Frontend Senior",
         company: "Strato Automation",
         duration: "2024 - 2026",
         location: "Montréal, Canada",
         description:
-          "Développement de OCN, une plateforme centralisée de gestion de réseaux de bâtiments intelligents visant à simplifier le pilotage d'équipements CVC (HVAC) et de protocoles industriels complexes.",
+          "Architecture et développement de OCN, une plateforme SaaS de gestion pour Smart Buildings pilotant des réseaux CVC (HVAC) et protocoles industriels.",
         details: [
-          "Design UI/UX & Conception : Responsable de la majorité des interfaces et du parcours utilisateur, avec une grande liberté de création et des retours très positifs de l'équipe.",
-          "Techniques avancées & Performance : Visualisation de plus d'un million de points en temps réel via SciChart et GridStack pour des dashboards industriels haute performance.",
-          "Expertise Bacnet : Intégration et configuration de réseaux complexes (IP & MSTP), incluant la découverte d'appareils et la mise à jour de Firmware.",
-          "Collaboration Agile & QA : Travail en étroite synergie avec le Back-End pour optimiser les endpoints API et avec la QA pour assurer une stabilité maximale via Jira.",
-          "Communication & Démos : Organisation de back-logs bi-mensuels et de démonstrations techniques pour valider les orientations de design et définir les priorités.",
+          "Pilotage de la stratégie frontend de la plateforme OCN avec un rôle de garant de la cohérence architecturale.",
+          "Conception UI/UX centrée utilisateur pour des interfaces métiers complexes, augmentant significativement l'adoption du produit.",
+          "Développement de dashboards haute performance visualisant plus d'un million de variables en temps réel (SciChart / GridStack).",
+          "Intégration de réseaux Bacnet (IP & MSTP) et gestion automatisée des cycles de vie firmware des équipements industriels.",
+          "Optimisation des flux API avec le backend et mise en place rigoureuse de standards QA pour garantir une stabilité critique.",
         ],
+        technologies: "Angular / C# / .NET / Typescript / TailwindCSS / Kendo UI / Jira / Figma",
       },
       {
-        role: "Développeur Full Stack",
-        company: "Alten Sud Ouest",
+        role: "Développeur Full Stack (Consultant)",
+        company: "Alten Sud Ouest (pour AIRBUS)",
         duration: "2019 - 2024",
         location: "Toulouse, France",
         description:
-          "Prestataire pour AIRBUS sur plusieurs projets critiques, allant de la gestion de plannings avioniques à l'analyse de données de production.",
+          "Intervention sur des systèmes critiques du secteur aéronautique : de la planification avionique à l'analyse de données de production.",
         details: [
-          "Mission Airbus (System Integration) : Développement d'une application Fullstack (Google Apps Script, SQL) pour la création et le partage de plannings de systèmes avioniques. Mise en place de visualisations SVG dynamiques.",
-          "Mission Airbus (Qualité) : Conception d'une interface Frontend sur la plateforme Skywise (Palantir) pour classifier les non-conformités des avions en production via SQL et JavaScript.",
-          "Mission Airbus (Essais au sol) : Développement d'un outil web de gestion des reprises d'essais (.NET, Angular, SQL Server). Rédaction des spécifications techniques (BRD/ARD) et modélisation de données.",
-          "Transverse : Accompagnement, formation des nouveaux arrivants et démonstrations régulières aux clients pour validation des besoins.",
+          "Développement d'une application critique de pilotage des plannings de production pour systèmes avioniques avec visualisations SVG dynamiques.",
+          "Création d'outils analytiques de classification des non-conformités de production sur la plateforme Big Data Skywise (Palantir).",
+          "Développement Fullstack (.NET / Angular) d'un outil web de suivi des reprises d'essais pour les chaînes de montage.",
+          "Accompagnement technique, formation des nouveaux arrivants, et animation des démonstrations clients lors des Sprint Reviews.",
         ],
+        technologies: "Angular / .NET / JavaScript / SQL Server / Palantir Skywise / Azure DevOps",
       },
-    ],
+    ],  
 
     // Education data
     education: [
       {
-        degree: "Master en Informatique",
+        degree: "Master Informatique (AIGLE)",
         school: "Université de Montpellier",
         duration: "2017 - 2019",
         description:
-          "Master en Architecture et Ingénierie des Logiciels et du Web à l'Université de Montpellier (AIGLE)",
+          "Architecture et Ingénierie des Logiciels et du Web.",
       },
       {
-        degree: "Licence en Informatique",
+        degree: "Licence Informatique",
         school: "Université de Montpellier",
         duration: "2014 - 2017",
-        description: "",
+        description: "Bases fondamentales : Algorithmique, Systèmes et Réseaux.",
       },
     ],
+  
 
     // Skills data
     skills: [
       {
         category: "Frontend",
-        items: ["Angular", "TypeScript", "Tailwind CSS", "Next.js", "Vite"],
+        items: ["Angular 17+", "TypeScript", "Kendo UI", "GridStack", "SciChart", "UI/UX Design"],
       },
       {
         category: "Backend",
-        items: [".NET", "C#", "PostgreSQL", "MongoDB"],
+        items: [".NET", "C#", "PostgreSQL",],
       },
-      { category: "Outils", items: ["Git", "Docker"] },
+      { category: "Outils", items: ["Git", "Docker", "Jira"] },
     ],
   },
 };
