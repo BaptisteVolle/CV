@@ -1,262 +1,172 @@
 import React from "react";
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Font,
-  Svg,
-  Path,
-} from "@react-pdf/renderer";
+import { Document, Page, Text, View } from "@react-pdf/renderer";
+import { styles } from "./PrintableCV.styles";
 
-
-import RobotoRegular from "../assets/fonts/RobotoRegular-3m4L.ttf";
-import RobotoBold from "../assets/fonts/RobotoBold-Xdoj.ttf";
-import RobotoItalic from "../assets/fonts/RobotoItalic-W0gE.ttf";
-import RobotoBoldItalic from "../assets/fonts/RobotoBoldItalic-4e0x.ttf";
-
-Font.register({
-  family: "Roboto",
-  fonts: [
-    { src: RobotoRegular },
-    { src: RobotoBold, fontWeight: "bold" },
-    { src: RobotoItalic, fontStyle: "italic" },
-    { src: RobotoBoldItalic, fontWeight: "bold", fontStyle: "italic" },
-  ]
-});
-
-// Create standard printable styles
-
-
-
-const styles = StyleSheet.create({
-  page: {
-    paddingHorizontal: 30,
-    paddingVertical: 20,
-    fontFamily: "Roboto",
-    backgroundColor: "#FFFFFF",
-  },
-  main: {
-    width: "100%",
-  },
-  header: {
-    marginBottom: 15,
-    textAlign: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#374151",
-    paddingBottom: 10,
-  },
-  name: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#000000",
-    textTransform: "uppercase",
-  },
-  subtitle: {
-    fontSize: 13,
-    color: "#374151",
-    marginTop: 2,
-    fontWeight: "bold",
-  },
-  contactRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 5,
-    gap: 10,
-  },
-  contactItem: {
-    fontSize: 9,
-    color: "#374151",
-  },
-  contact: {
-    fontSize: 9.5,
-    color: "#4b5563",
-    marginTop: 5,
-    textAlign: "center",
-  },
-  contactInfo: {
-    fontSize: 9.5,
-    color: "#4b5563",
-    fontWeight: "normal",
-  },
-  tagline: {
-    fontSize: 10,
-    color: "#000000",
-    marginTop: 10,
-    marginBottom: 10,
-    lineHeight: 1.4,
-    textAlign: "justify",
-  },
-  sectionTitle: {
-    fontSize: 10,
-    fontWeight: "bold",
-    backgroundColor: "#f3f4f6", 
-    color: "#111827",
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    marginHorizontal: -8,
-    marginTop: 14,
-    marginBottom: 12,
-    textTransform: "uppercase",
-    
-  },
-  itemGroup: {
-    marginBottom: 16,
-    flexDirection: "column", 
-  },
-  itemHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 2,
-  },
-  itemTitle: {
-    fontSize: 11,
-    fontWeight: "bold",
-    color: "#000000",
-  },
-  itemDate: {
-    fontSize: 8.5,
-    color: "#4b5563",
-  },
-  itemSubtitleRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 3,
-  },
-  itemSubtitle: {
-    fontSize: 9,
-    fontWeight: "bold",
-    color: "#374151",
-  },
-  itemLocation: {
-    fontSize: 8.5,
-    color: "#6b7280",
-    fontStyle: "italic",
-  },
-  itemDescription: {
-    fontSize: 10,
-    lineHeight: 1.3,
-    color: "#000000",
-    marginBottom: 4,
-  },
-  bulletPointContainer: {
-    flexDirection: "row",
-    marginBottom: 2,
-    paddingLeft: 4,
-  },
-  bulletMarker: {
-    width: 10,
-    fontSize: 8.5,
-  },
-  bulletText: {
-    flex: 1,
-    fontSize: 9,
-    lineHeight: 1.3,
-    color: "#000000",
-  },
-  
-  technologiesText: {
-    fontSize: 8,
-    color: "#374151",
-    marginTop: 5,
-    fontStyle: "italic",
-    paddingTop: 3,
-    borderTopWidth: 0.5,
-    borderTopColor: "#e5e7eb",
-  },
-});
+const contactEntries = (contact = {}) =>
+  [
+    { key: "phone", type: "phone", value: contact.phone },
+    { key: "email", type: "mail", value: contact.email },
+    { key: "location", type: "location", value: contact.location },
+  ].filter((item) => item.value);
 
 const PrintableCV = ({
-  experience,
-  education,
-  languages,
-  contact,
-  labels,
-  tagline,
-}) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      {/* Main Content */}
-      <View style={styles.main}>
-        <View style={styles.header}>
-          <Text style={styles.name}>BAPTISTE VOLLE</Text>
-          <Text style={styles.subtitle}>{labels.subtitle}, {labels.experienceDuration}</Text>
+  experience = [],
+  education = [],
+  interests = [],
+  languages = [],
+  contact = {},
+  labels = {},
+  // tagline = "",
+  skills = [],
+}) => {
+  const languagesText = languages
+    .map((lang) =>
+      lang.level ? `${lang.name} (${lang.level})` : `${lang.name}`,
+    )
+    .join(", ");
 
-          <Text style={styles.contact}> <Text style={styles.contactInfo}> {contact.email} </Text>  •  <Text style={styles.contactInfo}>{contact.phone} </Text>  </Text>
-
-        </View>
-
-        <Text style={styles.tagline}>{tagline}</Text>
-
-        <View style={{ marginBottom: 20 }}>
-          <Text style={styles.sectionTitle}>
-            {labels.professionalExperience}
-          </Text>
-          {experience.map((exp, i) => (
-            <View key={i} style={styles.itemGroup}>
-              <View style={styles.itemHeader}>
-                <Text style={styles.itemTitle}>{exp.role}</Text>
-                <Text style={styles.itemDate}>{exp.duration}</Text>
-              </View>
-              <View style={styles.itemSubtitleRow}>
-                <Text style={styles.itemSubtitle}>{exp.company}</Text>
-                {exp.location && (
-                  <Text style={styles.itemLocation}>{exp.location}</Text>
-                )}
-              </View>
-              <Text style={styles.itemDescription}>{exp.description}</Text>
-              {exp.details &&
-                exp.details.map((detail, dIdx) => {
-                  const colonIndex = detail.indexOf(":");
-                  if (colonIndex !== -1) {
-                    const title = detail.substring(0, colonIndex);
-                    const rest = detail.substring(colonIndex);
-                    return (
-                      <View key={dIdx} style={styles.bulletPointContainer}>
-                        <Text style={styles.bulletMarker}>•</Text>
-                        <Text style={styles.bulletText}>
-                          <Text style={styles.boldText}>{title}</Text>
-                          {rest}
-                        </Text>
-                      </View>
-                    );
-                  }
-                  return (
-                    <View key={dIdx} style={styles.bulletPointContainer}>
-                      <Text style={styles.bulletMarker}>•</Text>
-                      <Text style={styles.bulletText}>{detail}</Text>
-                    </View>
-                  );
-                })}
-              {exp.technologies && (
-                <Text style={styles.technologiesText}>
-                  <Text style={{ fontWeight: "bold", fontStyle: "normal" }}>
-                    {labels.technicalEnvironment}{" "}
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.main}>
+          <View style={styles.header}>
+            <View style={styles.headerTopRow}>
+              <View style={styles.headerLeft}>
+                <Text style={styles.name}>BAPTISTE VOLLE</Text>
+                <Text style={styles.subtitle}>{labels.subtitle || ""}</Text>
+                {/* {labels.experienceDuration ? (
+                  <Text style={styles.duration}>
+                    {labels.experienceDuration}
                   </Text>
-                  {exp.technologies}
-                </Text>
-              )}
+                ) : null} */}
+              </View>
+              <View style={styles.headerRight}>
+                {contactEntries(contact).map((entry) => (
+                  <View key={entry.key} style={styles.contactRow}>
+                    <Text style={styles.contactLine}>{entry.value}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
-          ))}
-        </View>
-
-        <View>
-          <Text style={styles.sectionTitle}>{labels.education}</Text>
-          {education.map((edu, i) => (
-          <View key={i} style={styles.itemGroup}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>{edu.degree}</Text>
-              <Text style={styles.itemDate}>{edu.duration}</Text>
-            </View>
-            <Text style={styles.itemSubtitle}>{edu.school}</Text>
-            {edu.description ? <Text style={styles.itemDescription}>{edu.description}</Text> : null}
           </View>
-        ))}
+
+          <View style={styles.sectionBlock}>
+            <Text style={styles.sectionTitle}>
+              {labels.technicalSkills || "Skills"}
+            </Text>
+            <View style={[styles.sectionContent, styles.skillsRows]}>
+              {(skills || []).map((group, idx) => (
+                <View key={idx} style={styles.skillRow}>
+                  <Text style={styles.skillRowTitle}>
+                    {group.category || ""}
+                  </Text>
+                  <Text style={styles.skillRowItems}>
+                    {(group.items || []).join(" / ")}
+                  </Text>
+                </View>
+              ))}
+              {languagesText ? (
+                <View style={styles.skillRow}>
+                  <Text style={styles.skillRowTitle}>
+                    {labels.languages || "Langues"}
+                  </Text>
+                  <Text style={styles.skillRowItems}>{languagesText}</Text>
+                </View>
+              ) : null}
+            </View>
+          </View>
+
+          <View style={styles.sectionBlock}>
+            <Text style={styles.sectionTitle}>
+              {labels.professionalExperience || ""}
+            </Text>
+            <View style={styles.sectionContent}>
+              {experience.map((exp, i) => (
+                <View
+                  key={i}
+                  style={[
+                    styles.timelineRow,
+                    i < experience.length - 1 ? styles.experienceRowGap : null,
+                  ]}
+                >
+                  <View style={styles.timelineLeft}>
+                    <Text style={styles.leftMain}>{exp.company || ""}</Text>
+
+                    {exp.location ? (
+                      <Text style={styles.leftMuted}>{exp.location}</Text>
+                    ) : null}
+                    <Text style={styles.leftSub}>{exp.duration || ""}</Text>
+                  </View>
+                  <View style={styles.timelineRight}>
+                    <Text style={styles.rightTitle}>{exp.role || ""}</Text>
+                    {exp.description ? (
+                      <Text style={styles.expDesc}>{exp.description}</Text>
+                    ) : null}
+                    {(exp.details || []).map((detail, dIdx) => (
+                      <View key={`${i}-${dIdx}`} style={styles.detailRow}>
+                        <View style={styles.bulletDot} />
+                        <Text style={styles.detailText}>{detail}</Text>
+                      </View>
+                    ))}
+                    {exp.technologies ? (
+                      <Text style={styles.technologies}>
+                        <Text style={styles.techLabel}>
+                          {labels.technicalEnvironment || ""}
+                        </Text>{" "}
+                        {exp.technologies}
+                      </Text>
+                    ) : null}
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
+
+          <View style={styles.sectionBlock}>
+            <Text style={styles.sectionTitle}>{labels.education || ""}</Text>
+            <View style={styles.sectionContent}>
+              <View style={[styles.timelineRow, styles.educationRow]}>
+                <View style={styles.timelineLeft}>
+                  <Text style={styles.leftMain}>{education.school || ""}</Text>
+
+                  {education.location ? (
+                    <Text style={styles.leftMuted}>{education.location}</Text>
+                  ) : null}
+                  <Text style={styles.leftSub}>{education.duration || ""}</Text>
+                </View>
+                <View style={styles.timelineRight}>
+                  <Text style={styles.rightTitle}>
+                    {education.degree || ""}
+                  </Text>
+                  {education.description ? (
+                    <Text style={styles.expDesc}>{education.description}</Text>
+                  ) : null}
+                </View>
+              </View>
+            </View>
+          </View>
+
+          {interests.length > 0 ? (
+            <View style={styles.sectionBlock}>
+              <Text style={styles.sectionTitle}>
+                {labels.interests || "Centres d'interets"}
+              </Text>
+              <View style={styles.sectionContent}>
+                <View style={styles.timelineRow}>
+                  <View style={styles.timelineLeft} />
+                  <View style={styles.timelineRight}>
+                    <Text style={styles.interestsText}>
+                      {interests.join(" · ")}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          ) : null}
         </View>
-      </View>
-    </Page>
-  </Document>
-);
+      </Page>
+    </Document>
+  );
+};
 
 export default PrintableCV;

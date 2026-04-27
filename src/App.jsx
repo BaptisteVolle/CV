@@ -1,56 +1,66 @@
-import React, { useState, useEffect } from "react";
-import { Sun, Moon, Languages } from "lucide-react";
-import Hero from "./components/Hero";
-import Experience from "./components/Experience";
-import Skills from "./components/Skills";
-import Education from "./components/Education";
-import { useLanguage } from "./i18n/LanguageContext";
+import React, { useEffect, useState } from "react";
+import { PDFViewer } from "@react-pdf/renderer";
+import PrintableCV from "./components/PrintableCV";
+import { useLanguage } from "./i18n/useLanguage";
+import { applyCvVersion, cvVersions } from "./data/cvVersions";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
+  const [isClient, setIsClient] = useState(false);
+  const [cvVersion, setCvVersion] = useState(() => {
+    return localStorage.getItem("cvVersion") || "base";
+  });
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cvVersion", cvVersion);
+  }, [cvVersion]);
+
+  const cv = applyCvVersion(t, language, cvVersion);
 
   return (
-    <div className="container mx-auto px-6 max-w-5xl relative">
-      {/* Controls Toggle */}
-      <div className="absolute top-6 right-6 z-50 flex gap-3">
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-md border border-[var(--border-color)] text-[var(--text-main)] hover:bg-white/20 dark:hover:bg-black/20 transition-all font-medium"
-          aria-label="Toggle language"
-        >
-          <Languages size={20} />
-          <span className="uppercase text-sm">{language}</span>
-        </button>
-
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-3 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-md border border-[var(--border-color)] text-[var(--text-main)] hover:bg-white/20 dark:hover:bg-black/20 transition-all"
-          aria-label="Toggle theme"
-        >
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </div>
-
-      <Hero />
-      <Experience />
-      <Skills />
-      <Education />
-
-      <footer className="text-center py-12 text-[var(--text-muted)] border-t border-[var(--border-color)] mt-8">
-        <p>
-          © {new Date().getFullYear()} Baptiste. {t.footer.rights}
-        </p>
-        <p className="text-sm mt-2">{t.footer.builtWith}</p>
-      </footer>
+    <div className="h-screen w-screen flex flex-col bg-slate-100">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4">
+        <div className="text-sm font-semibold text-slate-900">
+          Baptiste Volle - CV
+        </div>
+        <label className="flex items-center gap-2 text-sm text-slate-700">
+          <span className="font-medium">Version</span>
+          <select
+            className="h-9 rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none focus:border-slate-500"
+            value={cvVersion}
+            onChange={(event) => setCvVersion(event.target.value)}
+          >
+            {cvVersions.map((version) => (
+              <option key={version.id} value={version.id}>
+                {version.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </header>
+      {isClient && (
+        <main className="flex min-h-0 flex-1 items-center justify-center p-4">
+          <div className="h-full w-full max-w-5xl overflow-hidden">
+            <PDFViewer width="100%" height="100%" className="border-none">
+              <PrintableCV
+                experience={cv.experience}
+                education={cv.education}
+                interests={cv.interests || []}
+                languages={cv.languages}
+                contact={cv.contact}
+                labels={cv.pdfLabels}
+                skills={cv.skills || []}
+                tagline={cv.hero.tagline}
+              />
+            </PDFViewer>
+          </div>
+        </main>
+      )}
     </div>
   );
 }
