@@ -9,6 +9,11 @@ const contactEntries = (contact = {}) =>
     { key: "location", type: "location", value: contact.location },
   ].filter((item) => item.value);
 
+const splitInterests = (interests = []) => [
+  interests.slice(0, 3),
+  interests.slice(3),
+].filter((line) => line.length > 0);
+
 const PrintableCV = ({
   experience = [],
   education = [],
@@ -155,9 +160,17 @@ const PrintableCV = ({
                 <View style={styles.timelineRow}>
                   <View style={styles.timelineLeft} />
                   <View style={styles.timelineRight}>
-                    <Text style={styles.interestsText}>
-                      {interests.join(" · ")}
-                    </Text>
+                    {splitInterests(interests).map((line, index) => (
+                      <Text
+                        key={index}
+                        style={[
+                          styles.interestsText,
+                          index > 0 ? styles.interestsTextSpaced : null,
+                        ]}
+                      >
+                        {line.join("  ·  ")}
+                      </Text>
+                    ))}
                   </View>
                 </View>
               </View>

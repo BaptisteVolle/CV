@@ -180,10 +180,11 @@
       { name: "Anglais", level: "Professionnel" },
     ],
     interests: [
-      "Sport (Padel)",
-      "Jeux vidéo et Jeux de société",
-      "Nouvelles technologies",
-      "Voyages (Canada, Europe)",
+      "Sport (Padel, Tennis de table)",
+      "Jeux vidéo/eSports",
+      "Jeux de société",
+      "Informatique et Nouvelles technologies",
+      "Voyages (Canada, Europe, Japon, Corée)",
     ],
     // PDF specific labels
     pdfLabels: {
@@ -219,16 +220,15 @@
         duration: "2024 - 2026",
         location: "Montreal, Canada",
         description:
-          "Développement de la plateforme OCN (serveur Linux embarqué sous Docker) au sein d'une petite équipe R&D. J'ai porté l'essentiel des évolutions frontend récentes, de la conception produit/UX à l'implémentation, pour centraliser l'intégration des systèmes CVC et optimiser l'efficacité énergétique des bâtiments.",
+          "Développeur frontend principal sur l'application web OCN au sein de l'équipe software R&D. Plateforme déployée sur serveur Linux embarqué sous Docker, dédiée à l'intégration des systèmes CVC des bâtiments et à l'optimisation énergétique.",
         details: [
-          "Référent frontend sur l'application web : design et conception des interfaces, choix techniques et implémentation de la majorité des fonctionnalités.",
           "Implémentation de mécanismes de communication avec des équipements industriels via protocoles BACnet IP/MSTP (découverte, synchronisation des données).",
           "Gestion du cycle de vie des équipements embarqués : configuration applicative, maintenance et mise à jour firmware.",
-          "Développement d'interfaces en temps réel (dashboards, graphiques, alarmes) permettant une analyse rapide et continue de l'état du réseau et des équipements.",
+          "Développement d'interfaces temps réel facilitant le monitoring continu et le diagnostic précis des incidents.",
           "Refactoring de l'architecture en parallèle de la maintenance évolutive afin de préparer l'intégration de fonctionnalités Cloud et IoT (device twin, offline mode).",
           "Intégration d'outils d'analyse et diagnostic du trafic réseau (Wireshark) et de simulation de scénarios (Node-Red) à l'aide de containers Docker.",
-          "Mise en place et validation sur bancs de test locaux : équipements industriels, câblage réseau, serveur Linux embarqué et scénarios proches des conditions réelles.",
-          "Amélioration des processus R&D par l'intégration d'outils IA (Cursor, CodeRabbit).",
+          "Mise en place et validation sur bancs de test sur réseaux locaux avec serveur Linux embarqués et scénarios proches des conditions réelles.",
+          "Amélioration continue des processus R&D par l'intégration d'outils IA (Cursor, CodeRabbit).",
         ],
         technologies:
           "Angular /  C# / .NET / Docker / Git / SignalR / SciChart / RxJS / Jira ",
@@ -239,12 +239,11 @@
         duration: "2019 - 2024",
         location: "Toulouse, France",
         description:
-          "Réalisation de missions au sein de plusieurs départements d’Airbus, dans les domaines de la qualité des essais, du suivi de production et de l’intégration système au bureau d’étude.",
+          "Conception et développement en autonomie de plusieurs outils métier pour différents départements d'Airbus, allant de la planification des développements à l'analyse de données de production.",
         details: [
-          "Conception et maintien pendant 3 ans (du PoC au dépoiement) d'un outil de gestion des plannings de développement des systèmes avions via SVG (Google Apps Scripts, D3.js).",
-          "Création automatique de rapport KPI.",
-          "Developpement d'un outil de classification des non-conformités sur les avions de production (SQL, Skywise, HTML, Javascript).",
-          "Développement d'un outil de suivi des reprises d'essais (Angular/.NET/ SQL Server).",
+          "Outil de gestion des plannings de développement des systèmes avions, maintenu pendant 3 ans du PoC au déploiement, avec génération automatique de rapports KPI (Google Apps Scripts, D3.js, SVG).",
+          "Interface de classification des non-conformités sur avions de production (SQL, Skywise, HTML, Javascript).",
+          "Application de suivi des reprises d'essais pour les équipes terrain (Angular/.NET/ SQL Server).",
         ],
         technologies:
           "Angular / .NET (C#) / SQL Server / Google Apps Script / D3.js / Git ",

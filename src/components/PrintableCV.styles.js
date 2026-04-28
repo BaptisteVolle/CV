@@ -223,4 +223,7 @@ export const styles = StyleSheet.create({
     color: "#111111",
     lineHeight: 1.35,
   },
+  interestsTextSpaced: {
+    marginTop: 3,
+  },
 });
