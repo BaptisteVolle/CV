@@ -146,15 +146,15 @@
     hero: {
       tagline:
         "Développeur Frontend avec 7 ans d'expérience à Toulouse & Montréal, Je conçois des interfaces robustes et performantes en plaçant la compréhension des besoins clients au cœur de mon développement pour offrir des solutions métier adaptées.",
-      downloadPdf: "Telecharger le CV",
-      generatingPdf: "Generation du PDF...",
-      viewExperience: "Decouvrir mes projets",
+      downloadPdf: "Télécharger le CV",
+      generatingPdf: "Génération du PDF...",
+      viewExperience: "Découvrir mes projets",
       pdfFilename: "Baptiste_Volle_CV.pdf",
     },
     // Section titles
     sections: {
-      experience: "Experience",
-      skills: "Competences",
+      experience: "Expérience",
+      skills: "Compétences",
       education: "Formation",
     },
     // Footer
@@ -220,7 +220,7 @@
         duration: "2024 - 2026",
         location: "Montreal, Canada",
         description:
-          "Développeur frontend principal sur l'application web OCN au sein de l'équipe software R&D. Plateforme déployée sur serveur Linux embarqué sous Docker, dédiée à l'intégration des systèmes CVC des bâtiments et à l'optimisation énergétique.",
+          "Développement de l'application web OCN. Plateforme déployée sur serveur Linux embarqué sous Docker, permettant de connecter, configurer et gérer à distance des contrôleurs industriels au sein de bâtiments connectés",
         details: [
           "Implémentation de mécanismes de communication avec des équipements industriels via protocoles BACnet IP/MSTP (découverte, synchronisation des données).",
           "Gestion du cycle de vie des équipements embarqués : configuration applicative, maintenance et mise à jour firmware.",
